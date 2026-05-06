@@ -1,66 +1,66 @@
-# Modul-1665-Digitalitzacio
-## Guía Completa Docker - Proyecto Taller DIGI
+# Modul-1665-Digitalització
+## Guía Completa Docker - Projecte Taller DIGI
 
-### Tabla de Contenidos
+### Taula de Continguts
 1. [Nginx](#nginx)
 2. [MariaDB/MySQL](#mariadbmysql)
-3. [Comandos Útiles](#comandos-útiles)
-4. [Troubleshooting](#troubleshooting)
+3. [Comandaments Útils](#comandaments-útils)
+4. [Solució de Problemes](#solució-de-problemes)
 
 ---
 
 ### Nginx
 
-#### Información del Contenedor
-- **Nombre:** `nginx-web`
-- **Imagen:** `nginx:alpine`
-- **Puerto Local:** `8080`
-- **Puerto Contenedor:** `80`
+#### Informació del Contenidor
+- **Nom:** `nginx-web`
+- **Imatge:** `nginx:alpine`
+- **Port Local:** `8080`
+- **Port Contenidor:** `80`
 - **Carpeta Web:** `C:\Users\adria\Downloads\Proyecto de DIGI DIGI\projecte_taller\web`
 
-#### Comando de Inicio
+#### Comandament d'Inici
 ```bash
 docker run -d -p 8080:80 -v "C:\Users\adria\Downloads\Proyecto de DIGI DIGI\projecte_taller\web:/usr/share/nginx/html" --name nginx-web nginx:alpine
 ```
 
-#### Explicación del Comando
-| Parámetro | Significado |
+#### Explicació del Comandament
+| Paràmetre | Significat |
 |-----------|------------|
-| `docker run` | Crear y ejecutar un contenedor |
-| `-d` | Ejecutar en segundo plano (detached) |
-| `-p 8080:80` | Mapear puerto 8080 de tu PC → puerto 80 del contenedor |
-| `-v` | Montar carpeta local en el contenedor |
-| `--name nginx-web` | Nombre del contenedor |
-| `nginx:alpine` | Imagen a usar |
+| `docker run` | Crear i executar un contenidor |
+| `-d` | Executar en segon plà (detached) |
+| `-p 8080:80` | Mapear port 8080 del teu PC → port 80 del contenidor |
+| `-v` | Muntar carpeta local al contenidor |
+| `--name nginx-web` | Nom del contenidor |
+| `nginx:alpine` | Imatge a usar |
 
-#### Acceso a la Web
+#### Accés a la Web
 **URL:** `http://localhost:8080`
 
-Abre esta URL en tu navegador para ver tu web.
+Obri aquesta URL al teu navegador per veure la teva web.
 
-#### Cómo Funciona
-- Tu carpeta local está sincronizada con `/usr/share/nginx/html` dentro del contenedor
-- Cuando modificas archivos en `C:\Users\adria\Downloads\Proyecto de DIGI DIGI\projecte_taller\web`, nginx los sirve automáticamente
-- Solo actualiza la página en el navegador para ver cambios
+#### Com Funciona
+- La teva carpeta local està sincronitzada amb `/usr/share/nginx/html` dins del contenidor
+- Quan modificas arxius a `C:\Users\adria\Downloads\Proyecto de DIGI DIGI\projecte_taller\web`, nginx els serveix automàticament
+- Només actualitza la pàgina al navegador per veure canvis
 
-#### Comandos Nginx
+#### Comandaments Nginx
 ```bash
-# Ver estado
+# Veure estat
 docker ps
 
-## Ver logs (errores)
+# Veure logs (errors)
 docker logs nginx-web
 
-## Detener
+# Aturar
 docker stop nginx-web
 
-## Iniciar
+# Iniciar
 docker start nginx-web
 
-## Reiniciar
+# Reiniciar
 docker restart nginx-web
 
-## Remover (eliminar completamente)
+# Eliminar completament
 docker rm -f nginx-web
 ```
 
@@ -68,221 +68,222 @@ docker rm -f nginx-web
 
 ### MariaDB/MySQL
 
-#### Información del Contenedor
-- **Nombre:** `mariadb`
-- **Imagen:** `mariadb:latest`
-- **Puerto Local:** `3306`
-- **Puerto Contenedor:** `3306`
-- **Usuario:** `root`
-- **Contraseña:** `root`
+#### Informació del Contenidor
+- **Nom:** `mariadb`
+- **Imatge:** `mariadb:latest`
+- **Port Local:** `3306`
+- **Port Contenidor:** `3306`
+- **Usuari:** `root`
+- **Contrasenya:** `root`
 
-#### Comando de Inicio
+#### Comandament d'Inici
 ```bash
 docker run -d -p 3306:3306 -e MARIADB_ROOT_PASSWORD=root -e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes --name mariadb mariadb:latest
 ```
 
-#### Explicación del Comando
-| Parámetro | Significado |
+#### Explicació del Comandament
+| Paràmetre | Significat |
 |-----------|------------|
-| `docker run` | Crear y ejecutar un contenedor |
-| `-d` | Ejecutar en segundo plano (detached) |
-| `-p 3306:3306` | Mapear puerto 3306 de tu PC → puerto 3306 del contenedor |
-| `-e MARIADB_ROOT_PASSWORD=root` | Variable de entorno: contraseña root |
-| `-e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes` | Permitir contraseña vacía si es necesario |
-| `--name mariadb` | Nombre del contenedor |
-| `mariadb:latest` | Imagen a usar |
+| `docker run` | Crear i executar un contenidor |
+| `-d` | Executar en segon plà (detached) |
+| `-p 3306:3306` | Mapear port 3306 del teu PC → port 3306 del contenidor |
+| `-e MARIADB_ROOT_PASSWORD=root` | Variable d'entorn: contrasenya root |
+| `-e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes` | Permetre contrasenya buida si és necessari |
+| `--name mariadb` | Nom del contenidor |
+| `mariadb:latest` | Imatge a usar |
 
-#### Conexión desde Línea de Comandos
+#### Connexió des de Línia de Comandaments
 ```bash
-docker exec -it mariadb mysql -uroot -proot
+docker exec -it mariadb mariadb -uroot -proot
 ```
 
-Esto abre la consola interactiva de MySQL.
+Això obri la consola interactiva de MariaDB.
 
-#### Comandos Básicos en MySQL
+#### Comandaments Bàsics a MariaDB
 ```sql
--- Ver todas las bases de datos
+-- Veure totes les bases de dades
 SHOW DATABASES;
 
--- Seleccionar una base de datos
-USE nombrebd;
+-- Seleccionar una base de dades
+USE nombd;
 
--- Ver todas las tablas de la BD actual
+-- Veure totes les taules de la BD actual
 SHOW TABLES;
 
--- Ver estructura de una tabla
-DESCRIBE tabla;
+-- Veure estructura d'una taula
+DESCRIBE taula;
 
--- Ver datos de una tabla
-SELECT * FROM tabla;
+-- Veure dades d'una taula
+SELECT * FROM taula;
 
--- Salir de MySQL
+-- Sortir de MariaDB
 EXIT;
 ```
 
-#### Conexión Desde Aplicaciones GUI
-Puedes conectarte usando aplicaciones como:
-- **DBeaver** (recomendado, gratuito)
+#### Connexió des d'Aplicacions GUI
+Pots connectar-te usant aplicacions com:
+- **DBeaver** (recomanat, gratuït)
 - **TablePlus**
 - **MySQL Workbench**
 - **HeidiSQL**
 
-**Datos de Conexión:**
-| Campo | Valor |
-|-------|-------|
+**Dades de Connexió:**
+| Camp | Valor |
+|------|-------|
 | Host | `localhost` |
 | Port | `3306` |
 | User | `root` |
 | Password | `root` |
 | Driver | MySQL o MariaDB |
 
-#### Comandos MariaDB
+#### Comandaments MariaDB
 ```bash
-# Ver estado
+# Veure estat
 docker ps
 
-## Ver logs
+# Veure logs
 docker logs mariadb
 
-## Detener
+# Aturar
 docker stop mariadb
 
-## Iniciar
+# Iniciar
 docker start mariadb
 
-## Reiniciar
+# Reiniciar
 docker restart mariadb
 
-## Remover (eliminar completamente)
+# Eliminar completament
 docker rm -f mariadb
 
-## Acceder a la consola
-docker exec -it mariadb mysql -uroot -proot
+# Accedir a la consola
+docker exec -it mariadb mariadb -uroot -proot
 ```
 
 ---
 
-### Comandos Útiles
+### Comandaments Útils
 
-#### Ver Todos los Contenedores
+#### Veure Tots els Contenidors
 ```bash
-## Contenedores activos
+# Contenidors actius
 docker ps
 
-## Todos los contenedores (incluyendo parados)
+# Tots els contenidors (inclòs parats)
 docker ps -a
 ```
 
-#### Información Detallada
+#### Informació Detallada
 ```bash
-# Ver detalles de un contenedor
+# Veure detalls d'un contenidor
 docker inspect nginx-web
 docker inspect mariadb
 
-## Ver uso de recursos
+# Veure ús de recursos
 docker stats
 ```
 
-#### Logs y Debugging
+#### Logs i Debugging
 ```bash
-# Ver logs completos
+# Veure logs complets
 docker logs nginx-web
 docker logs mariadb
 
-## Ver logs en tiempo real (últimas líneas)
+# Veure logs en temps real (últimes línies)
 docker logs -f nginx-web
 docker logs -f mariadb
 
-## Ver últimas 50 líneas
+# Veure últimes 50 línies
 docker logs --tail 50 nginx-web
 ```
 
-#### Limpiar Espacios
+#### Netejar Espai
 ```bash
-## Ver uso de disco
+# Veure ús de disc
 docker system df
 
-## Eliminar contenedores parados
+# Eliminar contenidors parats
 docker container prune
 
-## Eliminar imágenes no usadas
+# Eliminar imatges no usades
 docker image prune
 
-## Limpiar todo (contenedores, imágenes, volúmenes sin usar)
+# Netejar tot (contenidors, imatges, volums sense usar)
 docker system prune -a
 ```
 
 ---
 
-### Troubleshooting
+### Solució de Problemes
 
-### El Contenedor no Inicia
+#### El Contenidor no S'Inicia
 ```bash
-# Ver logs para ver el error
-docker logs nombre-contenedor
+# Veure logs per veure l'error
+docker logs nom-contenidor
 
-## Reintentar
-docker restart nombre-contenedor
+# Reintentar
+docker restart nom-contenidor
 ```
 
-#### Puerto Ya Está en Uso
-Si ves error `port is already allocated`:
+#### Port Ja Està en Ús
+Si veus error `port is already allocated`:
 ```bash
-## Opción 1: Usar un puerto diferente
+# Opció 1: Usar un port diferent
 docker run -d -p 8081:80 --name nginx-web2 nginx:alpine
 
-## Opción 2: Matar el contenedor anterior
-docker rm -f nombre-contenedor
+# Opció 2: Matar el contenidor anterior
+docker rm -f nom-contenidor
 ```
 
-#### No Puedo Conectarme a MySQL
+#### No Puc Connectar-me a MariaDB
 ```bash
-## Verificar que el contenedor está corriendo
+# Verificar que el contenidor està correguent
 docker ps | findstr mariadb
 
-## Ver logs para errores
+# Veure logs per errors
 docker logs mariadb
 
-## Probar conexión desde consola
-docker exec -it mariadb mysql -uroot -proot
+# Provar connexió des de consola
+docker exec -it mariadb mariadb -uroot -proot
 ```
 
-#### Los Cambios en la Web no se Ven
-1. Verifica que la carpeta es la correcta:
+#### Els Canvis a la Web no es Veuen
+1. Verifica que la carpeta és la correcta:
    ```bash
    C:\Users\adria\Downloads\Proyecto de DIGI DIGI\projecte_taller\web
    ```
-2. Actualiza la página en el navegador (Ctrl+Shift+R para caché)
-3. Verifica que nginx está corriendo: `docker ps`
+2. Actualitza la pàgina al navegador (Ctrl+Shift+R per caché)
+3. Verifica que nginx està correguent: `docker ps`
 
-#### Ver Archivos dentro del Contenedor
+#### Veure Arxius dins del Contenidor
 ```bash
-## Para Nginx
+# Per a Nginx
 docker exec -it nginx-web ls -la /usr/share/nginx/html
 
-## Para MariaDB
+# Per a MariaDB
 docker exec -it mariadb ls -la /var/lib/mysql
 ```
 
 ---
 
-### Resumen de Puertos
-| Servicio | Puerto Local | URL/Host |
-|----------|-------------|----------|
+### Resum de Ports
+| Servei | Port Local | URL/Host |
+|--------|------------|----------|
 | Nginx | `8080` | `http://localhost:8080` |
 | MariaDB | `3306` | `localhost:3306` |
 
 ---
 
-### Detener Todo
+### Aturar Tot
 ```bash
-# Detener ambos contenedores
+# Aturar ambdós contenidors
 docker stop nginx-web mariadb
 
-## Remover ambos
+# Eliminar ambdós
 docker rm -f nginx-web mariadb
 ```
 
 ---
 
-**Última actualización:** 2026-05-06
+**Última actualització:** 2026-05-06
+
