@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Mecànic - Gestió de Cites</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Taller Mecànic — Gestió de Cites</h1>
+</header>
+
+<nav>
+    <button data-seccio="pag-nova" class="actiu">Nova Cita</button>
+    <button data-seccio="pag-cites">Cites</button>
+    <button data-seccio="pag-vehicles">Vehicles</button>
+</nav>
+
+<!-- NOVA CITA -->
+<div class="pagina activa" id="pag-nova">
+    <h2>Demanar una Cita</h2>
+    <div class="targeta">
+        <form id="formCita">
+            <p style="color:#666; font-size:0.9rem;">Dades del client</p>
+            <div class="fila-form">
+                <div>
+                    <label for="nom">Nom complet</label>
+                    <input type="text" id="nom" placeholder="Adri Alosno" required>
+                </div>
+                <div>
+                    <label for="telefon">Telèfon</label>
+                    <input type="tel" id="telefon" placeholder="600 111 222" required>
+                </div>
+            </div>
+            <label for="correu">Correu electrònic</label>
+            <input type="email" id="correu" placeholder="aalonso@educem.net" required>
+
+            <p style="color:#666; font-size:0.9rem; margin-top:18px;">Dades del vehicle</p>
+            <div class="fila-form">
+                <div>
+                    <label for="matricula">Matrícula</label>
+                    <input type="text" id="matricula" placeholder="1234ABC" required>
+                </div>
+                <div>
+                    <label for="model">Model</label>
+                    <input type="text" id="model" placeholder="Seat Ibiza" required>
+                </div>
+                <div>
+                    <label for="any_fabricacio">Any de fabricació</label>
+                    <input type="number" id="any_fabricacio" placeholder="2018" min="1990" max="2030" required>
+                </div>
+                <div>
+                    <label for="quilometres">Quilòmetres</label>
+                    <input type="number" id="quilometres" placeholder="85000" min="0" required>
+                </div>
+            </div>
+
+            <p style="color:#666; font-size:0.9rem; margin-top:18px;">Dades de la cita</p>
+            <div class="fila-form">
+                <div>
+                    <label for="data_cita">Data de la cita</label>
+                    <input type="date" id="data_cita" required>
+                </div>
+                <div>
+                    <label for="servei_sollicitat">Servei sol·licitat</label>
+                    <input type="text" id="servei_sollicitat" placeholder="Canvi d'oli" list="llista-serveis" required>
+                    <datalist id="llista-serveis"></datalist>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-enviar">Confirmar Cita</button>
+            <div id="missatge"></div>
+        </form>
+    </div>
+</div>
+
+<!-- CITES -->
+<div class="pagina" id="pag-cites">
+    <h2>Totes les Cites</h2>
+    <table id="taulaCites">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Client</th>
+                <th>Telèfon</th>
+                <th>Vehicle</th>
+                <th>Servei</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- VEHICLES -->
+<div class="pagina" id="pag-vehicles">
+    <h2>Vehicles Registrats</h2>
+    <table id="taulaVehicles">
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Model</th>
+                <th>Any</th>
+                <th>Quilòmetres</th>
+                <th>Propietari</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
