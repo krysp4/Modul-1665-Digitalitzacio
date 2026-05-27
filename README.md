@@ -207,6 +207,3 @@ A Ubuntu, el root de MariaDB usa autenticació del sistema i no accepta connexi�
 
 ---
 
-## Autor
-
-Adri Alonso Méndez — Mòdul 1665 Digitalització — EDUCEM 2026
